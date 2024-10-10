@@ -22,10 +22,9 @@ class AnnounceRepository extends AbstractRepository {
 
   async create(announce) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (search_title, user_type, instrument, location, description, name) values (?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (search_title,instrument, location, description, name) values (?, ?, ?, ?, ?)`,
       [
         announce.search_title,
-        announce.user_type,
         announce.instrument,
         announce.location,
         announce.description,
@@ -45,10 +44,9 @@ class AnnounceRepository extends AbstractRepository {
 
   async update(announce) {
     const [result] = await this.database.query(
-      `update ${this.table} set search_title = ?, user_type = ?, instrument = ?, location = ?, description = ?, name = ? where id = ?`,
+      `update ${this.table} set search_title = ?, instrument = ?, location = ?, description = ?, name = ? where id = ?`,
       [
         announce.search_title,
-        announce.user_type,
         announce.instrument,
         announce.location,
         announce.description,

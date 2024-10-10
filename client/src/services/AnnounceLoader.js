@@ -1,6 +1,6 @@
 import myAxios from "./myAxios";
 
-const AnnounceLoader = async () => {
+export const announceLoader = async () => {
   try {
     const response = await myAxios.get(`/api/announce`);
     return response.data;
@@ -9,4 +9,16 @@ const AnnounceLoader = async () => {
   }
 };
 
-export default AnnounceLoader;
+export const announceDetailLoader = async ({ params }) => {
+  try {
+    const response = await myAxios.get(`/api/announce/${params.id}`);
+    return response.data;
+  } catch (error) {
+    throw new Response("", { status: 405 });
+  }
+};
+
+export const announceIdLoader = async ({ params }) => {
+  const reponse = await myAxios.get(`/api/announce/${params.id}`);
+  return reponse.data;
+};
